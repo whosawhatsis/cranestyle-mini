@@ -90,3 +90,25 @@ difference() {
 	for(x = [1, -1], y = [1, -1]) translate([x * screwspacing/2, y * screwspacing/2, 0]) cylinder(r = 3/2 + .2, h = 20);
 }
 
+translate([28, 2, h + 6]) rotate([180, 0, -a * 2]) difference() {
+	linear_extrude(h + 6, convexity = 5) offset(-.5) difference() {
+		rotate(-a) translate([-5, -10, 0]) square([20, 30]);
+		difference() {
+			union() {
+				rotate(-a) square([screwspacing/2, screwspacing/2 + 3/2 + 2]);
+				hull() {
+					for(x = [1], y = [1, -1]) translate([x * screwspacing/2, y * screwspacing/2, 0]) circle(3/2 + 2);
+					translate([screwspacing/2, -screwspacing/2, 0]) rotate(-a) translate([0, screwspacing, 0]) circle(3/2 + 2);
+				}
+			}
+			circle(gear/2 + gearclearance);
+			translate([-screwspacing/2, screwspacing/2]) for(i = [-3:15]) hull() for(i = [i, i + 1]) rotate(i) translate([screwspacing/2, -screwspacing/2]) rotate(-a) translate([0, gear/2 + filament + idler / 2, 0]) circle(idler / 2 + idlerclearance);
+		}
+	}
+	mirror([1, 0, 0]) hull() {
+		translate([-screwspacing / 2, -screwspacing / 2 + 2, 5]) rotate([0, 90, 0]) {
+			cylinder(r = 6, h = screwspacing/2 - spring/2 + 3);
+			translate([0, 0, -3]) cylinder(r = 3, h = 1);
+		}
+	}
+}
