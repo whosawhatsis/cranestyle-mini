@@ -3,9 +3,12 @@ $fa = 2;
 
 difference() {
 	linear_extrude(8.5, convexity = 5) difference() {
-		union() {
-			square([16, 20], center = true);
-			translate([-8, 0, 0]) square([32 + 8, 10 + 10]);
+		offset(1) offset(-2) offset(1) difference() {
+			union() {
+				square([16, 20], center = true);
+				translate([-8, 0, 0]) square([32 + 8, 10 + 10]);
+			}
+			translate([18, 10, 0]) square(100);
 		}
 		for(x = [1, -1], y = [1, -1]) translate([x * 5, y * 7.5, 0]) circle(3/2 + .1);
 		for(x = [1, -1]) translate([5 + 12 + x * 12, 7.5, 0]) circle(3/2 + .1);
