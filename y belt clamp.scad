@@ -15,7 +15,7 @@ difference() {
 		offset(1) offset(-2) offset(1) {
 			square([W, L], center = true);
 			translate([-5, 0, 0]) square([W + 10, L1], center = true);
-			translate([-W/2 - 10 - 15, -L/2 + trigger, 0]) square([W/2 + 10 + 15, L/2 + L1/2 - trigger]);
+			translate([-W/2 - 10 - 17, -L/2 + trigger, 0]) square([W/2 + 10 + 17, L/2 + L1/2 - trigger]);
 		}
 		for(x = [1, -1], y = [1, -1]) translate([x * B/2, y * C/2, 0]) circle(3 / 2);
 		translate([-20, 0, 0]) circle(3 / 2);
